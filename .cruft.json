@@ -1,0 +1,32 @@
+{
+  "template": "https://github.com/OpenAstronomy/packaging-guide",
+  "commit": "d4aa2e8806bf57505dc65793009bd9ecb2777364",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "package_name": "opacity",
+      "module_name": "opacity",
+      "short_description": "Atomic and molecular opacities from MAESTRO",
+      "author_name": "Brett Morris",
+      "author_email": "morrisbrettm@gmail.com",
+      "project_url": "https://github.com/bmorris3/opacity",
+      "license": "Other",
+      "minimum_python_version": "3.11",
+      "use_compiled_extensions": "n",
+      "enable_dynamic_dev_versions": "n",
+      "include_example_code": "n",
+      "include_cruft_update_github_workflow": "y",
+      "_sphinx_theme": "alabaster",
+      "_parent_project": "",
+      "_install_requires": "",
+      "_copy_without_render": [
+        "docs/_templates",
+        "docs/_static",
+        ".github/workflows/sub_package_update.yml"
+      ],
+      "_template": "https://github.com/OpenAstronomy/packaging-guide",
+      "_commit": "d4aa2e8806bf57505dc65793009bd9ecb2777364"
+    }
+  },
+  "directory": null
+}
