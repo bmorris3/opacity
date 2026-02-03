@@ -2,7 +2,8 @@
 requires = [
   "setuptools>=62.1",
   "setuptools_scm[toml]>=8.0.0",
-  "wheel",]
+  "wheel",
+]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -10,11 +11,17 @@ name = "opacity"
 description = "Atomic and molecular opacities from MAESTRO"
 requires-python = ">=3.11"
 readme = { file = "README.rst", content-type = "text/x-rst" }
-license = { file = "licenses/LICENSE.rst" }
+license = { file = "licenses/LICENSE" }
 authors = [
   { name = "Brett Morris", email = "morrisbrettm@gmail.com" },
 ]
-dependencies = []
+dependencies = [
+  "astropy",
+  "fsspec",
+  "s3fs",
+  "xarray",
+  "zarr",
+]
 dynamic = ["version"]
 
 [project.optional-dependencies]
@@ -22,6 +29,8 @@ test = [
     "pytest",
     "pytest-doctestplus",
     "pytest-cov",
+    "pytest-remotedata",
+    "flake8"
 ]
 docs = [
     "sphinx",
