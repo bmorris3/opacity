@@ -1,0 +1,38 @@
+name: Run tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    uses: OpenAstronomy/github-actions-workflows/.github/workflows/tox.yml@v1
+    with:
+      envs: |
+        - name: tests, py3.11
+          linux: test
+          os: ubuntu-latest
+          python-version: 3.11
+
+        - name: tests, py3.12
+          linux: test
+          os: ubuntu-latest
+          python-version: 3.12
+
+        - name: tests, py3.13
+          linux: test
+          os: ubuntu-latest
+          python-version: 3.13
+
+        - name: Code style checks
+          python: 3.11
+          os: ubuntu-latest
+          linux: codestyle

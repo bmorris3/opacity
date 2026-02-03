@@ -19,4 +19,3 @@ def test_bad_species_name():
 
     with pytest.raises(ValueError, match="No matching MAESTRO opacity*"):
         find_matching_maestro_zarr_prefix(species)
-

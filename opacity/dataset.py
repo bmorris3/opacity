@@ -1,8 +1,4 @@
-import os
-import fsspec
-
 import xarray as xr
-
 import zarr
 from zarr.experimental.cache_store import CacheStore
 
