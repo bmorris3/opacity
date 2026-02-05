@@ -34,6 +34,8 @@ extensions = [
     "sphinx.ext.mathjax",
     "sphinx_automodapi.automodapi",
     "sphinx_automodapi.smart_resolver",
+    "matplotlib.sphinxext.plot_directive",
+    "numpydoc",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -57,26 +59,44 @@ default_role = 'py:obj'
 # -- Options for intersphinx extension ---------------------------------------
 
 # Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {"python": ("https://docs.python.org/", None)}
+intersphinx_mapping = {
+    "python": ("https://docs.python.org/3/objects.inv", None),
+    'numpy': ("https://numpy.org/doc/stable/", None),
+    'xarray': ("https://docs.xarray.dev/en/stable/", None),
+    'zarr': ("https://zarr.readthedocs.io/en/stable/", None),
+    'fsspec': ("https://filesystem-spec.readthedocs.io/en/latest/", None),
+}
 
 # -- Options for HTML output -------------------------------------------------
-
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = "alabaster"
+html_theme = 'sphinx_book_theme'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-# html_static_path = ["_static"]
+# html_logo = "assets/logo.png"
+# html_favicon = "assets/logo.ico"
 
-# By default, when rendering docstrings for classes, sphinx.ext.autodoc will
-# make docs with the class-level docstring and the class-method docstrings,
-# but not the __init__ docstring, which often contains the parameters to
-# class constructors across the scientific Python ecosystem. The option below
-# will append the __init__ docstring to the class-level docstring when rendering
-# the docs. For more options, see:
-# https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#confval-autoclass_content
-autoclass_content = "both"
+html_theme_options = {
+    "use_download_button": True,
+    "repository_url": "https://github.com/opacities/opacity",
+    "repository_branch": "main",
+    "path_to_docs": "docs",
+}
+
+numpydoc_show_class_members = False
+autodoc_inherit_docstrings = True
+
+html_context = {
+    "display_github": True,
+    "github_user": "opacities",
+    "github_repo": "opacity",
+    "github_version": "main",
+    "conf_py_path": "docs/",
+}
+
+autosectionlabel_prefix_document = True
+autoclass_content = 'both'
 
 # -- Other options ----------------------------------------------------------

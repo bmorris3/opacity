@@ -1,11 +1,16 @@
-opacity Documentation
----------------------
+opacity
+=======
 
-This is the documentation for opacity.
+Browse, retrieve, and cache opacity grids from MAESTRO stored on AWS S3.
+
+This package is currently under construction. You shouldn't rely on backwards compatibility until further notice.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
+
+   api.rst
+
 
 Indices and tables
 ==================

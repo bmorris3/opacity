@@ -35,9 +35,12 @@ test = [
 docs = [
     "sphinx",
     "sphinx-automodapi",
+    "sphinx-book-theme>=0.3.3",
+    "numpydoc",
+    "matplotlib",
 ]
 [project.urls]
-repository = "https://github.com/bmorris3/opacity"
+repository = "https://github.com/opacities/opacity"
 
 [tool.setuptools]
 zip-safe = false
