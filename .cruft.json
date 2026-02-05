@@ -9,7 +9,7 @@
       "short_description": "Atomic and molecular opacities from MAESTRO",
       "author_name": "Brett Morris",
       "author_email": "morrisbrettm@gmail.com",
-      "project_url": "https://github.com/bmorris3/opacity",
+      "project_url": "https://github.com/opacities/opacity",
       "license": "Other",
       "minimum_python_version": "3.11",
       "use_compiled_extensions": "n",

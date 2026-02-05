@@ -13,21 +13,21 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test:
+  ci_tests:
     uses: OpenAstronomy/github-actions-workflows/.github/workflows/tox.yml@v1
     with:
       envs: |
-        - name: tests, py3.11
+        - name: py3.11
           linux: test
           os: ubuntu-latest
           python-version: 3.11
 
-        - name: tests, py3.12
+        - name: py3.12
           linux: test
           os: ubuntu-latest
           python-version: 3.12
 
-        - name: tests, py3.13
+        - name: py3.13
           linux: test
           os: ubuntu-latest
           python-version: 3.13
@@ -36,3 +36,34 @@ jobs:
           python: 3.11
           os: ubuntu-latest
           linux: codestyle
+
+        - name: py3.12 with coverage
+          linux: test
+          os: ubuntu-latest
+          python: '3.12'
+          toxenv: py312-test-cov
+          toxposargs: --remote-data
+
+  cov:
+    name: Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+
+      - name: Install dependencies
+        run: 
+          pip install pytest pytest-cov pytest-doctestplus pytest-remotedata .
+
+      - name: Run tests
+        run: pytest --cov --cov-branch --cov-report=xml
+
+      - name: Upload results to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
