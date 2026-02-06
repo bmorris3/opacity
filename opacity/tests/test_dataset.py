@@ -35,12 +35,31 @@ grid1460_temperature = np.array(
         ('VO', 'pressure', grid1460_pressure),
     ]
 )
-def test_open_dataset_coordinates(tmpdir, species, coord, expected):
+def test_open_dataset_cache_coordinates(tmpdir, species, coord, expected):
     tmp_path = os.path.join(tmpdir, species + '.zarr')
     local_cache_store = zarr.storage.LocalStore(tmp_path)
     ds = open_dataset(
         species=species,
+        cache_path=tmp_path,
         local_cache_store=local_cache_store,
+        max_cache_size_gb=1e-3
+    )
+    assert all(ds[coord] == expected)
+
+
+@pytest.mark.remote_data
+@pytest.mark.parametrize(
+    "species, coord, expected", [
+        ('H2O', 'temperature', grid1460_temperature),
+        ('H2O', 'pressure', grid1460_pressure),
+        ('VO', 'temperature', grid1460_temperature),
+        ('VO', 'pressure', grid1460_pressure),
+    ]
+)
+def test_open_dataset_nocache_coordinates(tmpdir, species, coord, expected):
+    ds = open_dataset(
+        species=species,
+        cache=False,
         max_cache_size_gb=1e-3
     )
     assert all(ds[coord] == expected)

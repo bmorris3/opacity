@@ -75,14 +75,21 @@ html_theme = 'sphinx_book_theme'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-# html_logo = "assets/logo.png"
-# html_favicon = "assets/logo.ico"
+html_logo = "_static/logo.png"
 
 html_theme_options = {
-    "use_download_button": True,
-    "repository_url": "https://github.com/opacities/opacity",
-    "repository_branch": "main",
-    "path_to_docs": "docs",
+    "logo": {
+        "text": "opacity",
+        "image": "_static/logo.png",
+    },
+    "icon_links": [
+        {
+            "name": "GitHub",
+            "url": "https://github.com/opacities/opacity",
+            "icon": "fa-brands fa-square-github",
+            "type": "fontawesome",
+        }
+    ]
 }
 
 numpydoc_show_class_members = False

@@ -9,6 +9,7 @@ This package is currently under construction. You shouldn't rely on backwards co
    :maxdepth: 1
    :caption: Contents:
 
+   getting_started.rst
    api.rst
 
 
