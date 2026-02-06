@@ -28,16 +28,23 @@ grid1460_temperature = np.array(
 
 @pytest.mark.remote_data
 @pytest.mark.parametrize(
-    "species, coord, expected", [
-        ('H2O', 'temperature', grid1460_temperature),
-        ('H2O', 'pressure', grid1460_pressure),
-        ('VO', 'temperature', grid1460_temperature),
-        ('VO', 'pressure', grid1460_pressure),
+    "species, coord, expected, set_local_cache_store,", [
+        ('H2O', 'temperature', grid1460_temperature, True),
+        ('H2O', 'pressure', grid1460_pressure, False),
+        ('VO', 'temperature', grid1460_temperature, True),
+        ('VO', 'pressure', grid1460_pressure, False),
     ]
 )
-def test_open_dataset_cache_coordinates(tmpdir, species, coord, expected):
+def test_open_dataset_cache_coordinates(
+    tmpdir, species, coord, expected, set_local_cache_store
+):
     tmp_path = os.path.join(tmpdir, species + '.zarr')
-    local_cache_store = zarr.storage.LocalStore(tmp_path)
+
+    if set_local_cache_store:
+        local_cache_store = zarr.storage.LocalStore(tmp_path)
+    else:
+        local_cache_store = None
+
     ds = open_dataset(
         species=species,
         cache_path=tmp_path,
@@ -63,3 +70,15 @@ def test_open_dataset_nocache_coordinates(tmpdir, species, coord, expected):
         max_cache_size_gb=1e-3
     )
     assert all(ds[coord] == expected)
+
+
+def test_open_dataset_no_species(tmpdir, species=None):
+    with pytest.raises(
+        ValueError,
+        match="opacity.open_dataset requires a species*"
+    ):
+        _ = open_dataset(
+            species=species,
+            cache=False,
+            max_cache_size_gb=1e-3
+        )

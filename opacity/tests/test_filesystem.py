@@ -2,6 +2,7 @@ import pytest
 from opacity import get_available_datasets
 
 
+@pytest.mark.remote_data
 @pytest.mark.parametrize(
     "zarr_name,",
     [

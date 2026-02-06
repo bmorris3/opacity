@@ -21,16 +21,19 @@ jobs:
           linux: test
           os: ubuntu-latest
           python-version: 3.11
+          toxposargs: --remote-data
 
         - name: py3.12
           linux: test
           os: ubuntu-latest
           python-version: 3.12
+          toxposargs: --remote-data
 
         - name: py3.13
           linux: test
           os: ubuntu-latest
           python-version: 3.13
+          toxposargs: --remote-data
 
         - name: Code style checks
           python: 3.11
@@ -42,7 +45,6 @@ jobs:
           os: ubuntu-latest
           python: '3.12'
           toxenv: py312-test-cov
-          toxposargs: --remote-data
 
   cov:
     name: Coverage
@@ -61,7 +63,7 @@ jobs:
           pip install pytest pytest-cov pytest-doctestplus pytest-remotedata .
 
       - name: Run tests
-        run: pytest --cov --cov-branch --cov-report=xml
+        run: pytest --cov --cov-branch --cov-report=xml --remote-data
 
       - name: Upload results to Codecov
         uses: codecov/codecov-action@v5
