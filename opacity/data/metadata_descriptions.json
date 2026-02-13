@@ -1,0 +1,85 @@
+{
+  "calculation": {
+    "entries": {
+      "id": "int",
+      "mol": "str",
+      "iso_mol": "str",
+      "iso_abundance": "dict",
+      "ptid": "int",
+      "temperature": "float",
+      "pressure": "float",
+      "intensity_cutoff": "float",
+      "wing_cutoff": "float",
+      "line_profile": "float",
+      "code": "str",
+      "start_wno": "float",
+      "delta_wno": "float",
+      "doi": "str",
+      "date": "str"
+    }
+  },
+  "broadening": {
+    "calculation_options": {
+      "P_bro(J)": {
+        "full_name": "Used one equation for all transitions",
+        "description": "A single equation for the all lines which shows the behavior of P-broadening with quantum number J. This assumes the impact of molecular symmetry, other quantum numbers, and vibrational quantas are ignored in the general (P_{bro}(J)) equation form. "
+      },
+      "P_bro(J,Vib)": {
+        "full_name": "Used N equations for a molecule with N vibrational quanta",
+        "description": "N equations to describe the behavior of pressure-broadening coefficients for all lines based on their vibrational quanta and J quantum numbers. Therefore, for H2O molecule, we expect to have one equation for all Js, and multiple equations for each vibrational bands. This assumes the impact of other quantum numbers, and molecular symmetry are ignored in this (P_{bro}(J, vib)) equation form. "
+      },
+      "P_bro(J,sym)": {
+        "full_name": "Used N equations for a molecule with N symmetries",
+        "description": "N equations to describe the behavior of pressure-broadening coefficients for all lines based on their molecular symmetry and J quantum number.For example, (P_{bro}(J,Sym_1)= m_0 + (m_1*J) + (m_2*J^2)); (P_{bro}(J,Sym_2)= m_3 + (m_4*J) + (m_5*J^2)); etc. Assumptions: The impact of other quantum numbers and vibrational quantas are ignored in this (P_{bro}(J, Sym)) equation form. "
+      },
+      "P_bro(J,K,sym)": {
+        "full_name": "Used N equations for a molecule with N symmetries, and K molecular symmetries",
+        "description": "N equations to describe the behavior of pressure-broadening coefficient for all lines based on their symmetry, J and K quantum numbers. For example, (P_{bro}(J,Sym_1)=m_0+(m_1*J)+(m_2*J^2)+(n_1*K)+(n_2*K^2)), and (P_{bro}(J,K, Sym_2)=m_3+(m_4*J)+(m_5*J^2)+(n_3*K)+(n_4*K^2)), etc. Assumptions: The impact of vibrational quantas is ignored in this (P_{bro}(J,K, Sym)) equation form. "
+      },
+      "P_bro(J,K,sym,Vib)": {
+        "full_name": "Used N*M equations for a molecule with N symmetries, and M vibrational bands",
+        "description": "This equation accounts for the dependency of P-broadening on the quantum numbers J and K, molecular symmetries, and also vibrational bands. For example: (P_{bro}(J,K, Sym_1, Vib_1)=m_0+(m_1*J)+(m_2*J^2)+(n_1*K)+(n_2*K^2)), and (P_{bro}(J,K, Sym_2, Vib_2)=m_3+(m_4*J)+(m_5*J^2)+(n_3*K)+(n_4*K^2))."
+      },
+      "P_bro(lab,theory)": {
+        "full_name": "Used laboratory data and theoretical equations",
+        "description": "A set of laboratory measurmed coefficients and theoretical calculated P-broadening data just as they are."
+      }
+    },
+    "usr_warnings": {
+      "1":"Laboratory or theoretical broadener information not available at all.",
+      "2":"Theoretical broadener information used is for 296 K. Functional extrapolation used.",
+      "3":"Broadener data for an air mixture was used in place of this broadener gas.",
+      "4":"Broadener data is incomplete for high values of J",
+      "5":"Broadener data for self broadening was used in place of this broadener gas.",
+      "6":"Average values (non J-dependent) for the line broadening parameters are used."
+    },
+    "entries": {
+      "broadened_by": "str",
+      "abundance": "float",
+      "calculation_type": "str",
+      "functional_form": "str",
+      "inputs": "list",
+      "bibid": "str",
+      "usr_warning": "int",
+      "usr_note": "str",
+      "todo": "str"
+    }
+  },
+  "line_list": {
+    "entries": {
+      "wno_min": "float",
+      "wno_max": "float",
+      "temp_min":"float",
+      "temp_max":"float",
+      "db_name": "str",
+      "bibid": "str",
+      "usr_warning": "str",
+      "usr_note": "str",
+      "todo": "str"
+    },
+    "usr_warnings": {
+      "1": "Line list used is not suitable for this temperature regime.",
+      "2": "The line position accuracy is suitable for JWST-quality spectra only (R=100-3000)."
+    }
+  }
+}
